@@ -3,7 +3,9 @@
 }
 
 body {
-    background: #71C9CE;
+    /* Utilizando o background, pois possibilita a utlização de várias propriedades */
+    background: url("../Img/bg-site.jpg") no-repeat #71C9CE;
+    background-size: cover;
 }
 
 .container {
@@ -15,7 +17,14 @@ body {
 }
 
 .container h1 {
-    color: #333;
+    text-shadow:
+        1px 1px 0 black,
+        -1px -1px 0 black,
+        1px -1px 0 black,
+        -1px 1px 0 black;
+    /* Cria uma sombra em todas as direções para simular uma borda */
+
+    color: #b1b1b1;
     text-align: center;
     font-size: 28px;
 }
@@ -38,7 +47,7 @@ body {
     color: #3F72AF;
 }
 
-.container button {
+.btn-adicionar {
     border: none;
     border-radius: 15px;
     padding: 9px;
@@ -47,4 +56,11 @@ body {
     display: block;
     background: #77db81;
     font-weight: bold;
+}
+
+.btn-adicionar:hover {
+    cursor: pointer;
+    transition: 1s;
+    color: #3F72AF;
+    background: #72ca7b;
 }
