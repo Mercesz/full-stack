@@ -1,5 +1,4 @@
 const anoAtual = 2025
-const anosPCopa = 4
 
 /* 
     A Copa do Mundo acontece a cada 4 anos
@@ -9,3 +8,5 @@ const anosPCopa = 4
 console.log(`Ano para copa ${anoAtual + 1}`)
 
 document.write(`A próxima copa do mundo será em:  ${anoAtual + 1}`)
+
+
