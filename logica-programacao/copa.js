@@ -8,5 +8,3 @@ const anoAtual = 2025
 console.log(`Ano para copa ${anoAtual + 1}`)
 
 document.write(`A próxima copa do mundo será em:  ${anoAtual + 1}`)
-
-
