@@ -18,7 +18,7 @@ Fim
 let anoInicio = Number(prompt("Digite o ano da primeira Copa do Mundo que você viu: "));
 const anoAtual = 2025;
 
-while (anoInicio < anoAtual) {
-    console.log(`Copa do Mundo: ${anoInicio}`)
-    anoInicio = anoInicio + 4
+while (anoInicio <= anoAtual) {
+    console.log(`Copa do Mundo: ${anoInicio}`);
+    anoInicio = anoInicio + 4;
 }
