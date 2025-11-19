@@ -8,18 +8,18 @@ const listaMsg = document.querySelector(".lista-msg");
 const inputNome = document.getElementById("nome");
 const inputEmail = document.getElementById("email");
 const inputTel = document.getElementById("telefone");
+const inputEnd = document.getElementById("endereco");
 
 form.addEventListener("submit", function (event) {
     event.preventDefault();
 
     //Validação do formulário
-    if (inputNome.value == "" || inputEmail.value == "" || inputTel.value == "") {
+    if (inputNome.value == "" || inputEmail.value == "" || inputTel.value == "" || inputEnd.value == "") {
         alert("Campos em brancos, por favor preencha os dados.");
         return false;
     }
 
     //Condição para retirar a li > .lista-msg
-    //se listaMsg === true
     if (listaMsg) {
         listaMsg.remove();
     }
@@ -35,7 +35,11 @@ form.addEventListener("submit", function (event) {
 
     //Criando uma função para excluir
     btnExcluir.addEventListener("click", function () {
-        li.remove();
+        const confirmar = confirm("Tem certeza que deseja excluir o contato?");
+
+        if (confirmar) {
+            li.remove();
+        }
     });
 
     li.innerHTML = `
@@ -52,4 +56,3 @@ form.addEventListener("submit", function (event) {
     form.reset();
 
 });
-
