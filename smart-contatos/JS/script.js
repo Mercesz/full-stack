@@ -3,6 +3,7 @@ const form = document.querySelector("form");
 
 //Chamando a classe lista do HTML
 const lista = document.querySelector(".lista");
+const listaMsg = document.querySelector(".lista-msg");
 
 const inputNome = document.getElementById("nome");
 const inputEmail = document.getElementById("email");
@@ -17,13 +18,19 @@ form.addEventListener("submit", function (event) {
         return false;
     }
 
+    //Condição para retirar a li > .lista-msg
+    //se listaMsg === true
+    if (listaMsg) {
+        listaMsg.remove();
+    }
+
     //Criando LI
     const li = document.createElement("li");
 
     li.innerHTML = `
-        <span class="contato-nome">Nome: ${inputNome.value}</span>
-        <span class="contato-email">Email: ${inputEmail.value}</span>
-        <span class="contato-telefone">Telefone: ${inputTel.value}</span>
+        <span class="contato-nome">🧑🏻‍💻Nome: ${inputNome.value}</span>
+        <span class="contato-email">📩Email: ${inputEmail.value}</span>
+        <span class="contato-telefone">☎️Telefone: ${inputTel.value}</span>
     `;
 
     // enviando os dados da lista appendChild
