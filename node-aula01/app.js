@@ -20,12 +20,23 @@ app.get('/produtos', (req, res) => {
     res.send(produtos);
 });
 
+//Variável de times
+const times = [
+    { id: 1, nome: "Santos", ano: 1912 },
+    { id: 2, nome: "São Paulo", ano: 1900 },
+    { id: 3, nome: "Mirasol", ano: 1910 }
+];
+
 //Rota Home
 app.get('/home', (req, res) => {
     // console.log("Este é o dirname", __dirname)
     res.sendFile(__dirname + '/public/home.html');
 });
 
+// Rota Times
+app.get('/times', (req, res) => {
+    res.send(times);
+})
 
 // Executando o servidor
 app.listen(port, () => {
