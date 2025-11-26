@@ -11,17 +11,34 @@ const nomes = [
     { id: 5, nome: "Doris", idade: "33" },
 ];
 
+//Criando Funções Auxiliares
+// Retornar o Objeto por ID
+function buscarNomePorId(id) {
+    return nomes.filter((nome) => nome.id == id);
+};
+
 app.listen(PORT, () => {
     console.log(`Servidor rodando no endereço http://localhost:${PORT}`);
 });
 
+//Rota principal
+app.get("/", (req, res) => {
+    res.send("Olá! Você está na rota principal!!")
+});
 
 //Rota teste
 app.get('/teste', (req, res) => {
     res.send("API nodePeople está funcionando!");
 });
 
-//Rota de nota
-app.get('/nomes', (req, res) => {
-    res.send(nomes)
+//Rota de nomes(listaNomes)
+app.get('/listaNomes', (req, res) => {
+    res.send(nomes);
+});
+
+//Buscando por ID
+app.get('/listaNomes/:id', (req, res) => {
+    let index = req.params.id;
+
+    res.json(buscarNomePorId(index));
 });
