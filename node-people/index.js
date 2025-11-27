@@ -49,6 +49,12 @@ app.get('/listaNomes/:id', (req, res) => {
     res.json(buscarNomePorId(index));
 });
 
+//Criando Post para cadastrar
+app.post('/listaNomes', (req, res) => {
+    nomes.push(req.body);
+    res.status(201).send('Nome cadastrado com sucesso!');
+});
+
 
 //Criando Rota Excluir
 app.delete('/listaNomes/:id', (req, res) => {
