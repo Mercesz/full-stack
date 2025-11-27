@@ -2,6 +2,9 @@ const express = require("express");
 const app = express();
 const PORT = 3000; // Executando na porta 3000
 
+// Indicar para express  ler o body com json
+app.use(express.json());
+
 // mock
 const nomes = [
     { id: 1, nome: "Fernanda", idade: "18" },
@@ -9,6 +12,16 @@ const nomes = [
     { id: 3, nome: "Pedro", idade: "56" },
     { id: 4, nome: "Samuel", idade: "45" },
     { id: 5, nome: "Doris", idade: "33" },
+];
+
+const times = [
+    { id: 1, nome: "Corinthians", estado: "SP", titulos: 7 },
+    { id: 2, nome: "Palmeiras", estado: "SP", titulos: 11 },
+    { id: 3, nome: "Santos", estado: "SP", titulos: 8 },
+    { id: 4, nome: "Flamengo", estado: "RJ", titulos: 7 },
+    { id: 5, nome: "Vasco", estado: "RJ", titulos: 4 },
+    { id: 6, nome: "Atlético Mineiro", estado: "MG", titulos: 3 },
+    { id: 7, nome: "Cruzeiro", estado: "MG", titulos: 4 },
 ];
 
 //Criando Funções Auxiliares
@@ -61,4 +74,37 @@ app.delete('/listaNomes/:id', (req, res) => {
     let index = buscarIdNomes(req.params.id);
     nomes.splice(index, 1);
     res.send(`Nomes com id ${req.params.id} excluída com sucesso!`);
+});
+
+
+
+// Trabalhando novo mock
+// Função Auxiliar para buscar ID
+function BuscandoIdTimes(id) {
+    return times.filter((time) => time.id == id);
+}
+
+
+
+// Mostrando o array na página 
+app.get('/listaTimes', (req, res) => {
+    res.send(times);
+})
+
+//Listando o time pelo ID
+app.get('/listaTimes/:id', (req, res) => {
+    let index = req.params.id;
+
+    res.json(BuscandoIdTimes(index));
+});
+
+app.delete('/listaTimes/:id', (req, res) => {
+    let index = BuscandoIdTimes(req.params.id);
+    times.splice(index, 1);
+    res.send(`Times com o ${req.params.id} foram excluída com sucesso! `)
+});
+
+app.post('/listaTimes', (req, res) => {
+    times.push(req.body);
+    res.status(201).send('Time cadastrado com sucesso!');
 });
