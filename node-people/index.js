@@ -35,6 +35,15 @@ function buscarIdNomes(id) {
     return nomes.findIndex((nome) => nome.id == id);
 }
 
+// Funções Auxiliares para buscar ID do array de times
+function buscandoTimePorId(id) {
+    return times.filter((time) => time.id == id);
+}
+
+function BuscandoIdTimes(id) {
+    return times.findIndex((nome) => nome.id == id);
+}
+
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando no endereço http://localhost:${PORT}`);
@@ -72,6 +81,12 @@ app.post('/listaNomes', (req, res) => {
 //Criando Rota Excluir
 app.delete('/listaNomes/:id', (req, res) => {
     let index = buscarIdNomes(req.params.id);
+
+    //Se não encontrar o id retorna erro
+    if (index === -1) {
+        return res.status(404).send(`Nenhum nome com id ${req.params.id} foi encontrado`)
+    }
+
     nomes.splice(index, 1);
     res.send(`Nomes com id ${req.params.id} excluída com sucesso!`);
 });
@@ -79,13 +94,6 @@ app.delete('/listaNomes/:id', (req, res) => {
 
 
 // Trabalhando novo mock
-// Função Auxiliar para buscar ID
-function BuscandoIdTimes(id) {
-    return times.filter((time) => time.id == id);
-}
-
-
-
 // Mostrando o array na página 
 app.get('/listaTimes', (req, res) => {
     res.send(times);
@@ -95,15 +103,24 @@ app.get('/listaTimes', (req, res) => {
 app.get('/listaTimes/:id', (req, res) => {
     let index = req.params.id;
 
-    res.json(BuscandoIdTimes(index));
+    res.json(buscandoTimePorId(index));
 });
 
+//Deletando Times por ID
 app.delete('/listaTimes/:id', (req, res) => {
     let index = BuscandoIdTimes(req.params.id);
+
+    // Se não encontrar o id retorna erro
+    if (index === -1) {
+        return res.status(404).send(`Nenhum time com id ${req.params.id} foi encontrado`);
+    }
+
     times.splice(index, 1);
-    res.send(`Times com o ${req.params.id} foram excluída com sucesso! `)
+
+    res.send(`Times com o ${req.params.id} foram excluída com sucesso! `);
 });
 
+//Postando Novos Times
 app.post('/listaTimes', (req, res) => {
     times.push(req.body);
     res.status(201).send('Time cadastrado com sucesso!');
