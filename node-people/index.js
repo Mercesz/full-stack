@@ -51,7 +51,7 @@ app.listen(PORT, () => {
 
 //Rota principal
 app.get("/", (req, res) => {
-    res.send("Olá! Você está na rota principal!!")
+    res.send("Olá! Você está na rota principal!!");
 });
 
 //Rota teste
@@ -91,6 +91,15 @@ app.delete('/listaNomes/:id', (req, res) => {
     res.send(`Nomes com id ${req.params.id} excluída com sucesso!`);
 });
 
+//Rota Alterar
+app.put('/listaNomes/:id', (req, res) => {
+    let index = buscarIdNomes(req.params.id);
+    nomes[index].nome = req.body.nome;
+    nomes[index].idade = req.body.idade;
+
+    res.json(nomes);
+});
+
 
 
 // Trabalhando novo mock
@@ -108,20 +117,35 @@ app.get('/listaTimes/:id', (req, res) => {
 
 //Deletando Times por ID
 app.delete('/listaTimes/:id', (req, res) => {
+    let id = req.params.id
     let index = BuscandoIdTimes(req.params.id);
 
     // Se não encontrar o id retorna erro
     if (index === -1) {
-        return res.status(404).send(`Nenhum time com id ${req.params.id} foi encontrado`);
+        return res.status(404).send(`Nenhum time com id ${id} foi encontrado`);
     }
 
     times.splice(index, 1);
 
-    res.send(`Times com o ${req.params.id} foram excluída com sucesso! `);
+    res.send(`Times com o ${id} foram excluída com sucesso! `);
 });
+
+//Rota alterar times
+app.put('/listaTimes/:id', (req, res) => {
+    let index = BuscandoIdTimes(req.params.id);
+
+    times[index].nome = req.body.nome;
+    times[index].estado = req.body.estado;
+    times[index].titulos = req.body.titulos;
+
+    res.json(times);
+});
+
 
 //Postando Novos Times
 app.post('/listaTimes', (req, res) => {
     times.push(req.body);
     res.status(201).send('Time cadastrado com sucesso!');
 });
+
+
