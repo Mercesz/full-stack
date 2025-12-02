@@ -48,6 +48,8 @@ app.get('/listaCadastros', (req, res) => {
 app.get('/listaCadastros/:id', (req, res) => {
     let index = req.params.id
 
+    console.log(`Este é o tipo do id ${typeof index}`)
+    
     res.json(buscarCadastroPorId(index));
 });
 
