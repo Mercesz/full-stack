@@ -1,8 +1,6 @@
 import express from 'express';
 const app = express();
 
-export default app;
-
 app.use(express.json());
 
 // Mock 
@@ -37,10 +35,6 @@ const cadastros = [
 ];
 
 //Funções Auxiliares
-function buscarCadastroPorId(id) {
-    return cadastros.filter((cadastro) => cadastro.id == id);
-}
-
 function buscarIdCadastro(id) {
     return cadastros.findIndex((cadastro) => cadastro.id == id);
 }
@@ -88,18 +82,14 @@ app.put('/listaCadastros/:id', (req, res) => {
     cadastros[index].idade = req.body.idade;
     cadastros[index].endereco = req.body.endereco;
 
-    res.send(`Usuário alterado com sucesso!`)
+
     res.json(cadastros);
 });
 
 // Cadastrando usuário
 app.post('/listaCadastros', (req, res) => {
-
     cadastros.push(req.body);
-    if (id == "" || nome == "" || telefone == "" || cpf == "" || email == "" || idade == "" || endereco == "") {
-        return res.send(`Dados incompletos, por favor preencha todos os campos ❌`)
-    };
-
     res.status(201).send('Usuário cadastrado com sucesso🎉');
 });
 
+export default app;
