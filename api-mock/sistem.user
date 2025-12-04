@@ -1,0 +1,16 @@
+CREATE DATABASE sistem_user;
+
+USE sistem_user;
+
+-- Criando tabela cadastro
+CREATE TABLE cadastro(
+	email VARCHAR(150) NOT NULL PRIMARY KEY,
+    senha VARCHAR(150) NOT NULL
+);
+
+INSERT INTO cadastro (email, senha) values
+	('davijones@gmail.com','213696974'),
+    ('zeze@gmail.com','123456789'),
+    ('popeto@gmail.com','987654321');
+    
+SELECT * FROM cadastro;
