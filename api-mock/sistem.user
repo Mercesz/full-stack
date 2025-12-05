@@ -4,6 +4,7 @@ USE sistem_user;
 
 -- Criando tabela cadastro
 CREATE TABLE cadastro(
+	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	email VARCHAR(150) NOT NULL PRIMARY KEY,
     senha VARCHAR(150) NOT NULL
 );
