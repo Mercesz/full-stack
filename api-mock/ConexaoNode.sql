@@ -21,4 +21,3 @@ INSERT INTO selecoes(selecao,grupo) VALUES
 
 SELECT * FROM selecoes;
 
-DROP TABLE selecoes;
